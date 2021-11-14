@@ -31,14 +31,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //  declaration of some variables
   double pourcente = 0;
   int seconde = 0;
   bool stop = false;
   int minute = 0;
   int secondeRemaind = 0;
   var sec = const Duration(seconds: 1);
+
+  // startChrono launch the stopwatch
+
   void startChrono() {
     stop = false;
+
+    // Timer's callback function is use to define the behavior of the stopwatch after a sec
+
     Timer(sec, () {
       for (int i = 0; i < 1; i++) {
         seconde++;
@@ -50,6 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
         if (stop) {
           break;
         }
+
+// to make it repeat infinitly startChrono is used has a recursive function
+
         startChrono();
         setState(() {});
       }
@@ -67,9 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Stack(
-              children:
-                  // ignore: sized_box_for_whitespace
-                  [
+              children: [
                 // ignore: sized_box_for_whitespace
                 Container(
                   width: 200,
@@ -113,6 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 20,
                 ),
                 FloatingActionButton(
+                    // here onPressed reset the stopwatch
                     onPressed: () {
                       seconde = 0;
                       secondeRemaind = 0;
